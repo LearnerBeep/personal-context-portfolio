@@ -79,7 +79,9 @@ function renderFiles() {
         link.click();
         URL.revokeObjectURL(url);
       });
-      li.append(document.createElement("code")).textContent = file;
+      const code = document.createElement("code");
+      code.textContent = file;
+      li.append(code);
       li.append(" — ", a);
     } else {
       li.innerHTML = `<code>${file}</code> — pending`;

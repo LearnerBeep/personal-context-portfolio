@@ -8,12 +8,12 @@ Two paths to building your personal context portfolio. Pick whichever fits.
 
 The fastest way. A purpose-built interviewer agent handles the whole process.
 
-1. Go to [app URL].
-2. Sign in with your email (magic link, no password needed).
-3. The agent introduces itself and starts the interview.
-4. It works through all ten files in sequence — asking you questions, drafting each file, and asking you to correct what it got wrong.
-5. You can stop after any file and come back later. It picks up where you left off.
-6. When you're done, download your complete portfolio as a zip.
+1. Run a local static server from the repo root (for example: `python3 -m http.server 8000`).
+2. Open `http://localhost:8000/webapp/`.
+3. Enter your OpenAI-compatible base URL, model, and API key.
+4. The interviewer agent starts and works through your portfolio in chat.
+5. Save drafted files as you go.
+6. Download your complete portfolio as a zip.
 
 The whole thing takes 30-60 minutes if you do it in one sitting. Most people spread it across a few sessions.
 
@@ -70,3 +70,26 @@ This is the part that turns your portfolio from "a nice set of documents" into a
 - **Don't skip the reaction pass.** When your build partner drafts a file, read it and find what's wrong. The corrections are where the real signal is. A rubber-stamped draft is a mediocre file.
 - **Short is better than long.** A good context file is one page, not five. Agents perform better with dense, high-signal context than with sprawling documents.
 - **Update regularly.** Projects change, priorities shift, you learn new tools. A portfolio that's six months stale is worse than no portfolio — it gives your agents confident but wrong context.
+
+
+---
+
+## Implementation in This Repository
+
+This repository now includes all three wiring/deployment options:
+
+- **Option A (Static docs site):** `_config.yml`, `index.md`, and `.github/workflows/deploy-pages.yml`
+- **Option B (Interviewer web app):** `webapp/index.html`, `webapp/app.js`, `webapp/styles.css`
+- **Option C (MCP resource server):** `mcp/server.js`
+
+### Quick Run Commands
+
+From the repo root (`/home/runner/work/personal-context-portfolio/personal-context-portfolio`):
+
+```bash
+# Serve the docs + web app locally
+python3 -m http.server 8000
+
+# Run MCP server over stdio
+node mcp/server.js --root /home/runner/work/personal-context-portfolio/personal-context-portfolio
+```

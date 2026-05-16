@@ -1,0 +1,5 @@
+title: Personal Context Portfolio
+description: A structured markdown portfolio for AI context portability.
+theme: minima
+markdown: kramdown
+plugins: []

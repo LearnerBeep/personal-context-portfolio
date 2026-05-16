@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Interviewer App</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Portfolio Interviewer App</h1>
+      <p>Client-side chat UI for building the 10-file personal context portfolio.</p>
+    </header>
+
+    <section class="config">
+      <h2>LLM Configuration (OpenAI-compatible)</h2>
+      <div class="grid">
+        <label>Base URL <input id="baseUrl" value="https://api.openai.com/v1" /></label>
+        <label>Model <input id="model" value="gpt-4.1-mini" /></label>
+        <label>API Key <input id="apiKey" type="password" placeholder="sk-..." /></label>
+      </div>
+      <button id="startBtn">Start Interview</button>
+    </section>
+
+    <section class="chat">
+      <h2>Interview</h2>
+      <div id="messages" class="messages"></div>
+      <div class="composer">
+        <textarea id="userInput" rows="3" placeholder="Type your response..."></textarea>
+        <button id="sendBtn">Send</button>
+      </div>
+    </section>
+
+    <section class="files">
+      <h2>Generated Files</h2>
+      <p>When the assistant drafts a file, click save and choose the matching filename.</p>
+      <div class="file-actions">
+        <select id="fileSelect"></select>
+        <button id="saveDraftBtn">Save Last Assistant Draft</button>
+        <button id="downloadZipBtn">Download Portfolio ZIP</button>
+      </div>
+      <ul id="fileList"></ul>
+    </section>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

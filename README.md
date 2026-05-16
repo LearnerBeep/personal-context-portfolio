@@ -35,7 +35,7 @@ Ten files, each covering a different dimension of who you are and how you work:
 
 ## Two Ways to Build Yours
 
-**Use the web app.** A purpose-built interviewer agent walks you through the whole process. You answer questions, it drafts your files, you correct what it gets wrong, and you walk away with your complete portfolio. Zero setup, zero friction. → [Link to app]
+**Use the web app.** A purpose-built interviewer agent walks you through the whole process. You answer questions, it drafts your files, you correct what it gets wrong, and you walk away with your complete portfolio. Run it from `/webapp/`.
 
 **Do it yourself.** Fork this repo and use the templates in `/templates`. Each template includes the interview questions your AI build partner should ask you, plus the output structure for the finished file. Hand any template to Claude or ChatGPT and say "let's do this one."
 
@@ -62,3 +62,37 @@ personal-context-portfolio/
 ## License
 
 MIT. Fork it, customize it, use it however you want.
+
+
+## Deploy and Run
+
+### Option A — Static Site (GitHub Pages)
+
+This repo now includes a GitHub Pages workflow at `.github/workflows/deploy-pages.yml` and a Jekyll config (`_config.yml`).
+
+1. Push changes to `main`.
+2. In GitHub, enable **Pages** with **GitHub Actions** as the source.
+3. The workflow builds and deploys a rendered HTML documentation site.
+
+You can also deploy the same content to Netlify or Vercel as static files.
+
+### Option B — Interviewer Web App
+
+A browser-based interviewer app is available in `/webapp`.
+
+- Open `/webapp/index.html` through any static server (for example, from repo root: `python3 -m http.server 8000`).
+- Configure an OpenAI-compatible `Base URL`, `Model`, and `API Key`.
+- Start the interview, chat through the protocol, save drafted files, and download a ZIP.
+
+### Option C — MCP Resource Server
+
+A minimal MCP stdio server is available at `/mcp/server.js` and exposes markdown files in this repo as MCP resources.
+
+Run it with:
+
+```bash
+REPO_ROOT=/absolute/path/to/personal-context-portfolio
+node \"$REPO_ROOT/mcp/server.js\" --root \"$REPO_ROOT\"
+```
+
+Then configure your MCP client to launch that command. The server supports `resources/list` and `resources/read` for markdown resources under the configured root.

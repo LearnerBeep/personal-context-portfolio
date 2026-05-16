@@ -84,12 +84,12 @@ This repository now includes all three wiring/deployment options:
 
 ### Quick Run Commands
 
-From the repo root (`/home/runner/work/personal-context-portfolio/personal-context-portfolio`):
+From the repo root (an absolute path like `/absolute/path/to/personal-context-portfolio`):
 
 ```bash
 # Serve the docs + web app locally
 python3 -m http.server 8000
 
 # Run MCP server over stdio
-node mcp/server.js --root /home/runner/work/personal-context-portfolio/personal-context-portfolio
+node mcp/server.js --root /absolute/path/to/personal-context-portfolio
 ```

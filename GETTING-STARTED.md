@@ -91,5 +91,6 @@ From the repo root (an absolute path like `/absolute/path/to/personal-context-po
 python3 -m http.server 8000
 
 # Run MCP server over stdio
-node mcp/server.js --root /absolute/path/to/personal-context-portfolio
+REPO_ROOT=/absolute/path/to/personal-context-portfolio
+node mcp/server.js --root \"$REPO_ROOT\"
 ```

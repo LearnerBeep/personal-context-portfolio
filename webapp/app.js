@@ -68,10 +68,17 @@ function renderFiles() {
   for (const file of FILE_ORDER) {
     const li = document.createElement("li");
     if (state.files.has(file)) {
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(new Blob([state.files.get(file)], { type: "text/markdown;charset=utf-8" }));
-      a.download = file;
+      const a = document.createElement("button");
+      a.type = "button";
       a.textContent = `Download ${file}`;
+      a.addEventListener("click", () => {
+        const url = URL.createObjectURL(new Blob([state.files.get(file)], { type: "text/markdown;charset=utf-8" }));
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = file;
+        link.click();
+        URL.revokeObjectURL(url);
+      });
       li.append(document.createElement("code")).textContent = file;
       li.append(" — ", a);
     } else {
@@ -248,6 +255,7 @@ downloadZipBtn.addEventListener("click", () => {
   a.href = URL.createObjectURL(zipBlob);
   a.download = "personal-context-portfolio.zip";
   a.click();
+  URL.revokeObjectURL(a.href);
 });
 
 renderFiles();

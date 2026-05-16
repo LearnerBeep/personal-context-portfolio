@@ -91,7 +91,8 @@ A minimal MCP stdio server is available at `/mcp/server.js` and exposes markdown
 Run it with:
 
 ```bash
-node /absolute/path/to/personal-context-portfolio/mcp/server.js --root /absolute/path/to/personal-context-portfolio
+REPO_ROOT=/absolute/path/to/personal-context-portfolio
+node \"$REPO_ROOT/mcp/server.js\" --root \"$REPO_ROOT\"
 ```
 
 Then configure your MCP client to launch that command. The server supports `resources/list` and `resources/read` for markdown resources under the configured root.

@@ -7,10 +7,6 @@ const rootFlagIndex = args.indexOf("--root");
 const rootPath = rootFlagIndex >= 0 ? args[rootFlagIndex + 1] : process.cwd();
 const ROOT = path.resolve(rootPath);
 
-function isMarkdownFile(filePath) {
-  return filePath.endsWith(".md") && fs.statSync(filePath).isFile();
-}
-
 function listMarkdownFiles(dir, output = []) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
@@ -35,7 +31,9 @@ function fromUri(uri) {
   const rel = uri.slice("portfolio://".length);
   const absolute = path.resolve(ROOT, rel);
   if (!absolute.startsWith(ROOT)) throw new Error("Resource path escapes root directory.");
-  if (!fs.existsSync(absolute) || !isMarkdownFile(absolute)) throw new Error("Resource not found.");
+  if (!fs.existsSync(absolute)) throw new Error("Resource not found.");
+  const stats = fs.statSync(absolute);
+  if (!stats.isFile() || !absolute.endsWith(".md")) throw new Error("Resource not found.");
   return absolute;
 }
 
